@@ -46,7 +46,7 @@ module.exports = {
         });
     },
     drop: (req, res) => {
-        User.deleteMany({ email: /test@pos.com/ }, function (err) {
+        User.deleteMany({ _id: req.params.id }, function (err, response) {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -54,7 +54,7 @@ module.exports = {
                 });
             }
             res.status(200).json({
-                msg: 'Success'
+                msg: `${req.params.id} deleted!`
             });
         });
     }
